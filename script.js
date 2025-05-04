@@ -1,7 +1,7 @@
 const data = {
 	'Param' : {
 
-		'get' : function() {
+		'list' : function() {
 			try {
 				jparams = {}
 				rparams = window.top.location.href.split('?')[1].replaceAll('%20', ' ').split('&')
@@ -18,28 +18,32 @@ const data = {
 			}
 		},
 
+		'get' : function(p) {
+			return data.Param.list()[p]
+		},
+
 		'set' : function(p, value) {
-			if (data.Param.get()[p] == undefined) {
-				if (Object.keys(data.Param.get()).length == 0) {
+			if (data.Param.list()[p] == undefined) {
+				if (Object.keys(data.Param.list()).length == 0) {
 					window.top.location.href += `?${p}=${value}`
 				} else {
 					window.top.location.href += `&${p}=${value}`
 				}		
 			} else {
-				if (Object.keys(data.Param.get()).length == 1) {
+				if (Object.keys(data.Param.list()).length == 1) {
 					window.top.location.href = window.top.location.href.split('?')[0] + '?' + p + '=' + value 
 				} else {
-					var parts = window.top.location.href.split(p + '=' + data.Param.get()[p])
+					var parts = window.top.location.href.split(p + '=' + data.Param.get(p))
 					window.top.location.href = parts[0] + p + '=' + value + parts[1]
 				}
 			}
 		},
 
 		'remove' : function(p) {
-			if (Object.keys(data.Param.get()).length == 1) {
+			if (Object.keys(data.Param.list()).length == 1) {
 				window.top.location.href = window.top.location.href.split('?')[0]
 			} else {
-				p += '=' + data.Param.get()[p]
+				p += '=' + data.Param.get(p)
 				window.top.location = window.top.location.href.replace(p + '&', '').replace(p, '')
 			}
 		},
@@ -52,7 +56,7 @@ const data = {
 
 	'Cookie' : {
 
-		'get' : function() {
+		'list' : function() {
 			try {
 				var jcookies = {}
 				var rcookies = document.cookie.split('; ')
@@ -67,6 +71,10 @@ const data = {
 			} catch {
 				return {}
 			}
+		},
+
+		'get' : function(c) {
+			return data.Cookie.list()[c]
 		},
 
 		'set' : function(c, value=undefined, path=undefined, expire=undefined) {
