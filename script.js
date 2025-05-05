@@ -85,7 +85,7 @@ window.data = {
 					var c = rcookies[x].split('=')
 
 					if (c[1] == 'true' || c[1] == 'false') { c[1] = c[1]=='true' }
-					if (!isNaN(Number(c[1]))) {	c[1] = Number(c[1]) }
+					else if (!isNaN(Number(c[1]))) {	c[1] = Number(c[1]) }
 					
 					jcookies[c[0]] = c[1]
 				}
@@ -103,7 +103,7 @@ window.data = {
 			if (value != undefined) { c += `=${value}` }
 			if (path != undefined) { c += `; path=${path}` }
 			if (expire != undefined) { c += `; expires=${expire}` }
-			document.cookie = c
+			document.cookie = String(c)
 		},
 
 		'remove' : function(c) {
