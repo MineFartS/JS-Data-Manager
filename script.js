@@ -1,4 +1,4 @@
-const data = {
+window.data = {
 	'Param' : {
 
 		'list' : function() {
@@ -51,6 +51,9 @@ const data = {
 			window.top.location.href = window.top.location.href.split('?')[0]
 		},
 
+		'length' : function() {
+			return Object.keys(data.Param.list()).length
+		}
 	},
 
 	'Cookie' : {
@@ -92,5 +95,8 @@ const data = {
 			}
 		},
 
+		'length' : function() {
+			return Object.keys(data.Cookie.list()).length
+		}
 	}
 }
