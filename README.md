@@ -1,6 +1,12 @@
+
 # JS Data Manager
 A script for easily managing cookies and url parameters in javascript/html
 -
+Setup
+-
+To use this function with your website, paste the following code into your HTML file:
+
+    <script src="https://minefarts.github.io/JS-Data-Manager/script.js"></script>
 
 Functions:
 -
