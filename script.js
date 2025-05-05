@@ -100,9 +100,12 @@ window.data = {
 		},
 
 		'set' : function(c, value=undefined, path=undefined, expire=undefined) {
+			if (expire == null) { expire = 'Fri, 31 Dec 9999 23:59:59 GMT' }
+
 			if (value != undefined) { c += `=${value}` }
 			if (path != undefined) { c += `; path=${path}` }
 			if (expire != undefined) { c += `; expires=${expire}` }
+			
 			document.cookie = String(c)
 		},
 
