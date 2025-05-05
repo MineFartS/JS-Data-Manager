@@ -16,9 +16,12 @@ Functions:
 	- data.Param.set('name', 'value')
 	- data.Param.remove('name')
 	- data.Param.clear()
+ 	- data.Param.length()
 - Cookies
 	- data.Cookie.list()
 	- data.Cookie.get('name')
 	- data.Cookie.set('name', 'value', 'path', 'expire')
 	- data.Cookie.remove('name')
 	- data.Cookie.clear()
+ 	- data.Cookie.length()
+  
