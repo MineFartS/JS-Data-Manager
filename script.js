@@ -7,9 +7,8 @@ const data = {
 				rparams = window.top.location.href.split('?')[1].replaceAll('%20', ' ').split('&')
 				for (x in rparams) {
 					var p = rparams[x].split('=')
-					if (['true', 'false'].includes(p[1])) {
-						p[1] = p[1] == 'true'
-					}
+					if (['true', 'false'].includes(p[1])) { p[1] = p[1] == 'true' }
+					if (Number(p[1]) != NaN) { p[1] = Number(p[1]) }
 					jparams[p[0]] = p[1]
 				}
 				return jparams
@@ -62,9 +61,8 @@ const data = {
 				var rcookies = document.cookie.split('; ')
 				for (x in rcookies) {
 					var c = rcookies[x].split('=')
-					if (['true', 'false'].includes(c[1])) {
-						c[1] = c[1] == 'true'
-					}
+					if (['true', 'false'].includes(c[1])) { c[1] = c[1] == 'true' }
+					if (Number(c[1]) != NaN) { c[1] = Number(c[1]) }
 					jcookies[c[0]] = c[1]
 				}
 				return jcookies
@@ -89,7 +87,7 @@ const data = {
 		},
 
 		'clear' : function() {
-			for (c in data.Cookie.get()) {
+			for (c in data.Cookie.list()) {
 				data.Cookie.remove(c)
 			}
 		},
