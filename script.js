@@ -1,14 +1,25 @@
 window.data = {
 	'Param' : {
 
+		'raw' : function() {
+			let url = window.top.location.href
+			if (url.includes('?')) {
+				return decodeURIComponent(url.substring(url.indexOf('?') + 1))
+			} else {
+				return undefined
+			}
+		},
+
 		'list' : function() {
 			try {
 				jparams = {}
-				rparams = window.top.location.href.split('?')[1].replaceAll('%20', ' ').split('&')
+				rparams = data.Param.raw().split('&')
 				for (x in rparams) {
 					var p = rparams[x].split('=')
-					if (['true', 'false'].includes(p[1])) { p[1] = p[1] == 'true' }
-					if (Number(p[1]) != NaN) { p[1] = Number(p[1]) }
+
+					if (p[1] == 'true' || p[1] == 'false') { p[1] = p[1]=='true' }
+					if (!isNaN(Number(p[1]))) {	p[1] = Number(p[1]) }
+					
 					jparams[p[0]] = p[1]
 				}
 				return jparams
@@ -58,14 +69,24 @@ window.data = {
 
 	'Cookie' : {
 
+		'raw' : function() {
+			if (document.cookie == '') {
+				return undefined
+			} else {
+				return document.cookie
+			}
+		},
+
 		'list' : function() {
 			try {
 				var jcookies = {}
-				var rcookies = document.cookie.split('; ')
+				var rcookies = data.Cookie.raw().split('; ')
 				for (x in rcookies) {
 					var c = rcookies[x].split('=')
-					if (['true', 'false'].includes(c[1])) { c[1] = c[1] == 'true' }
-					if (Number(c[1]) != NaN) { c[1] = Number(c[1]) }
+
+					if (c[1] == 'true' || c[1] == 'false') { c[1] = c[1]=='true' }
+					if (!isNaN(Number(c[1]))) {	c[1] = Number(c[1]) }
+					
 					jcookies[c[0]] = c[1]
 				}
 				return jcookies
