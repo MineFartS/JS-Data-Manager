@@ -11,6 +11,7 @@ To use this function with your website, paste the following code into your HTML 
 Functions:
 -
 - Parameters
+	- data.Param.raw()
 	- data.Param.list()
 	- data.Param.get('name')
 	- data.Param.set('name', 'value')
@@ -18,6 +19,7 @@ Functions:
 	- data.Param.clear()
  	- data.Param.length()
 - Cookies
+	- data.Cookie.raw()
 	- data.Cookie.list()
 	- data.Cookie.get('name')
 	- data.Cookie.set('name', 'value', 'path', 'expire')
